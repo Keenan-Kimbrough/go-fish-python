@@ -1,46 +1,59 @@
+"""Python Game called Go Fish
 
-# go fish
-# deck, mutliple players, they hands( cards), turns ( state ), game itself( function)
+    Returns:
+        _type_: _description_
+"""
+import traceback
+
 
 class Deck:
-        
-        def __init__(self):
+    """Deck of playing cards class
     
-            self.suits = ['spades', 'hearts', 'diamonds',' clubs']
-            self.numbers = ['1','2','3','4','5','6','7','8','9','10','J','Q','K']
-    
-            self.deck = []
-    
-            for suit in range(len(self.suits)):
-                for number in range(len(self.numbers)):
-                    self.deck.append([self.suits[suit],self.numbers[number]])
-                
-                    
-        def pop(self):
-            try:
-                    
-                return self.deck.pop()
-            except: 
-                print(" No more cards available")
-        
+    """
+    def __init__(self):
+
+        self.suits = ['spades', 'hearts', 'diamonds',' clubs']
+        self.numbers = ['1','2','3','4','5','6','7','8','9','10','J','Q','K']
+
+        self.deck = []
+
+        for suit in range(len(self.suits)):
+            for number in range(len(self.numbers)):
+                self.deck.append([self.suits[suit],self.numbers[number]])
+              
+    def pop(self):
+        """returns a card 
+
+        Returns:
+            array: containing strings
+        """
+        try:      
+            return self.deck.pop()
+        except TypeError:
+            return traceback.print_exc()
 
 class Card:
-        def __init__(self):
-           pass
+    """Playing Card Class that is made up of a suit, and number
+    """ 
+    def __init__(self):
+        pass
             
             
 class Player:
+    """Player class
+    """
     
-    hand = []
-    score = []
     
     def __init__(self):
-        pass
+        self.hand = []
+        self.score = []
+
     
     
         
-class Go_fish:
-    
+class GoFish:
+    """ The name of the game, it is a card game.
+    """
     
     def __init__(self):
         self.deck = Deck()
@@ -48,29 +61,34 @@ class Go_fish:
         self.card = Card()
         self.game_over = False
         self.players = []
+        self.starthand = 5
        
     
     def play(self, num_players):
-        
-        
-        while self.game_over == False:
-            
-            
-            for x in range(num_players):
-                self.players.insert(x, self.player)
+        """ Play method that starts the game.
 
-                for y in range(len(self.players)):    
-                
-                    self.players[y].hand.append(self.deck.pop())
+        Args:
+            num_players (_type_): _description_
+        """
+        
+        while self.game_over is False:
             
-            for p in range(4):
-                print(self.players[p].hand)
+            
+            for player in range(num_players):
+                self.players.insert(player, self.player)
+
+            for player in range(self.starthand):    
+                
+                self.players[player].hand.append(self.deck.pop())
+            
+            for player in range(num_players):
+                print(self.players[player].hand)
               
                 
             self.game_over = True
 
 
-game1 = Go_fish()
+game1 = GoFish()
 
 game1.play(num_players=5)
 
